@@ -1,64 +1,172 @@
 @import "tailwindcss";
 
-/* Custom font imports */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
 
-:root {
-  --background: #FAF9F7;
-  --foreground: #2A2420;
-  --neutral-50: #FAF9F7;
-  --neutral-100: #F5F3F0;
-  --neutral-200: #EBE7E2;
-  --neutral-300: #D9D0C7;
-  --neutral-400: #C4B8AE;
-  --neutral-500: #AFA399;
-  --neutral-600: #8B7D73;
-  --neutral-700: #6D655B;
-  --neutral-800: #4F4844;
-  --neutral-900: #3A3430;
-  --neutral-950: #2A2420;
-  --gold-50: #FFFBF5;
-  --gold-100: #FEF7ED;
-  --gold-200: #FDE5C8;
-  --gold-300: #FBD38D;
-  --gold-400: #F6AD55;
-  --gold-500: #ED8936;
-  --gold-600: #DD6B20;
-  --gold-700: #C05621;
-  --gold-800: #9C4221;
-  --gold-900: #7C2D12;
-  --gold-950: #431407;
+  --color-background: #FDFAF8;
+  --color-foreground: #1A1715;
+
+  --color-accent: #8C6B3E;
+  --color-accent-light: #B8956A;
+  --color-accent-dark: #6E5430;
+  --color-accent-gold: #D4A04A;
+
+  --color-neutral-50: #FAF8F6;
+  --color-neutral-100: #F3EDE7;
+  --color-neutral-200: #E6DDD4;
+  --color-neutral-300: #D1C4B7;
+  --color-neutral-400: #B5A494;
+  --color-neutral-500: #968371;
+  --color-neutral-600: #756153;
+  --color-neutral-700: #574840;
+  --color-neutral-800: #3A322C;
+  --color-neutral-900: #252019;
+  --color-neutral-950: #141210;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: Inter, sans-serif;
-  --font-display: 'Playfair Display', serif;
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-gold);
+    color: var(--color-foreground);
+  }
 }
 
-html {
-  font-family: Inter, sans-serif;
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    background-color: var(--color-accent);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    border: 1px solid var(--color-accent);
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+    letter-spacing: 0.2em;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    background-color: transparent;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 0;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.2em;
+  }
+
+  .btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    background-color: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 0;
+    border: 1px solid var(--color-neutral-300);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-outline-dark:hover {
+    background-color: var(--color-foreground);
+    color: #fff;
+    border-color: var(--color-foreground);
+    letter-spacing: 0.2em;
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    background-color: var(--color-accent-gold);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    border: 1px solid var(--color-accent-gold);
+    text-decoration: none;
+  }
+
+  .btn-gold:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    letter-spacing: 0.2em;
+  }
+
+  .section-dark {
+    background-color: var(--color-neutral-950);
+    color: #fff;
+  }
+
+  .card {
+    background-color: #fff;
+    border-radius: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--color-neutral-200);
+    padding: 1.5rem;
+  }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
-}
-
-.btn-primary {
-  @apply bg-[var(--gold-500)] hover:bg-[var(--gold-600)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
-}
-
-.btn-secondary {
-  @apply bg-[var(--neutral-100)] hover:bg-[var(--neutral-200)] text-[var(--neutral-800)] font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
-}
-
-.card {
-  @apply bg-white rounded-xl shadow-lg p-6 border border-[var(--neutral-200)];
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
